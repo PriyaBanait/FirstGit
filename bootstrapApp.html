@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+     crossorigin="anonymous">
+
+    <title>form design</title>
+    <style>
+      
+      .input-area{
+              margin-bottom: 10px;
+      }
+      form{
+              background-color: #d0f6e2;
+           }
+      
+  </style>
+  </head>
+  <body>
+    
+    <section class="container">
+       
+    </div>
+    <div class="container w-50">
+     <div class="row justify-content-center">
+      <div class="col-xl-10">
+        <form id="my-form" onsubmit="saveData(event)">
+            <header class="text-center">
+                <h1 style="color:orange">Book a call</h1>
+                <h6>Book a call slot and our representative will call you within 1hr of selected time</h6>
+                <hr width="100%" size="4px">
+            </header>
+            <div class="col-xl-12 input-area">
+              <label for="name" class="form-label">Name:</label>
+              <input type="text" name="name" class="form-control" id="name" required>
+              <div class="invalid-feedback">
+                please
+              </div>
+            </div>
+            <div class="col-xl-12 input-area">
+              <label for="mail" class="form-label">Email:</label>
+              <input type="text" name="mail" class="form-control" id="mail" required>
+              <div class="invalid-feedback">
+                please
+              </div>
+            </div>
+            <div class="col-xl-12 input-area">
+              <label for="phone" class="form-label">Phone:</label>
+              <input type="text" name="phone" class="form-control" id="phone" required>
+            </div>
+            
+            <lable>Time for Call:</lable>
+            <div class="input-group input-area">
+              <input type="date" name="date" class="form-control" id="date">
+              <input type="time" name="time" class="form-control" id="time">
+            </div>
+            
+            <div class="col-xl-12 input-area">
+                <button type="submit" class="btn btn-primary" style="color:white;background-color:orange;">GET A CALL</button>
+              </div>
+            </div>
+          </div>
+            
+            
+          </form>
+        </section>
+        <script src="Form.js"></script>
+    </body>
+    </html>

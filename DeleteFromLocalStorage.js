@@ -28,10 +28,28 @@ document.getElementById('my-form').addEventListener('submit', (event)=>{
         deleteButton.value='Delete';
         deleteButton.type='button'
 
+        const editButton=document.createElement('input');
+        editButton.value='Edit';
+        editButton.type='button';
+
         deleteButton.onclick=()=>{
             localStorage.removeItem(saveDataObject.mail);
             parent.removeChild(child);
+            
         }
+
+      editButton.onclick=()=>{
+            localStorage.removeItem(saveDataObject.mail);
+            parent.removeChild(child);
+            document.getElementById('name').value=saveDataObject.name;
+            document.getElementById('mail').value=saveDataObject.mail;
+            document.getElementById('phone').value=saveDataObject.phone;
+            document.getElementById('date').value=saveDataObject.date;
+            document.getElementById('time').value=saveDataObject.time;
+
+        }
+        
         child.appendChild(deleteButton);
+        child.appendChild(editButton);
         parent.appendChild(child);
     }

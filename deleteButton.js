@@ -1,26 +1,19 @@
-//Add delete button
-var deleteButton=document.createElement('button')
-var li=document.getElementsByClassName('list-group-item');
-deleteButton.className='btn btn-danger btn-sm float-right delete';
-deleteButton.appendChild(document.createTextNode('x'));
-li[0].appendChild(deleteButton);
-//Add edit button
-var editButton=document.createElement('button');
-editButton.className='btn';
-var text=document.createTextNode('edit');
-editButton.appendChild(text);
-deleteButton.appendChild(editButton);
+
 
 
 //remove li tag by delete button
 var form =document.getElementById('addForm');
 var item=document.getElementById('items');
+var filter=document.getElementById('filter');
+
 
 
 //Form submit event
 form.addEventListener('submit', addItem);
 //delete event
 item.addEventListener('click', removeItem);
+//filter event
+filter.addEventListener('keyup',filterItems);
 
 //add item
 function addItem(e){
@@ -28,15 +21,18 @@ function addItem(e){
 
     //get input value
     var newItem=document.getElementById('item').value;
+    var description=document.getElementById('description').value;
 
     // create new element
     var li=document.createElement('li');
 
     //add class
     li.className='list-group-item';
+    var node=document.createTextNode(" "+description);
 
     //add text node with input value
     li.appendChild(document.createTextNode(newItem));
+    li.appendChild(node);
     //create delete btn element
     var deletebtn=document.createElement('button');
     //add class name to del btn
@@ -58,3 +54,28 @@ function removeItem(e){
     }
   }  
 }
+
+//filter items
+function filterItems(e){
+    //convert text to lowercase
+    var text=e.target.value.toLowerCase();
+    var items=item.getElementsByTagName('li');
+    //convert to an array
+    Array.from(items).forEach(function(item){
+        var itemName=item.firstChild.textContent;
+       var child=item.childNodes[1].textContent;
+        
+        if(itemName.toLowerCase().indexOf(text)!=-1||child.toLowerCase().indexOf(text)!=-1){
+            item.style.display='block';
+        }else{
+            item.style.display='none';
+        }
+    
+    })
+}
+
+
+
+
+
+

@@ -14,6 +14,7 @@ document.getElementById('my-form').addEventListener('submit', (event)=>{
         time:time
     }
     localStorage.setItem(saveDataObject.mail,JSON.stringify(saveDataObject));
+
     
     onScreen(saveDataObject);
   })
@@ -21,4 +22,6 @@ document.getElementById('my-form').addEventListener('submit', (event)=>{
     function onScreen(saveDataObject){
         var parent=document.getElementById('object')
         parent.innerHTML=parent.innerHTML+`<li> ${saveDataObject.name} - ${saveDataObject.mail}-${saveDataObject.phone}-${saveDataObject.date}-${saveDataObject.time}</li>`
+
     }
+    

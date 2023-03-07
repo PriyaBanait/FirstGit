@@ -27,6 +27,18 @@ document.getElementById('my-form').addEventListener('submit', (event)=>{
     
     //onScreen(saveDataObject);
 })
+window.addEventListener("DOMContentLoaded", () =>{
+    axios.get("https://crudcrud.com/api/665ce3b7a67241a2a7b4365427899d45/appoinmentData")
+    .then((response)=>{
+        console.log(response)
+        for(var i=0;i<response.data.length;i++){
+            onScreen(response.data[i]);
+        }
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+})
 
     function onScreen(saveDataObject){
         var parent=document.getElementById('object')

@@ -51,10 +51,20 @@ function showNewUserOnScreen(user){
 var parentNode=document.getElementById('object');
 var childHTML=`<li id=${user._id}> ${user.name}- ${user.mail}-${user.phone}-${user.date}-${user.time}
                    <button onclick=deleteUser('${user._id}')> Delete user </button>
+                   <button onclick="editUser('${user.name}','${user.mail}','${user.phone}','${user.date}','${user.time}','${user._id}')"> Edit user </button>
                     </li>`
 
 
                     parentNode.innerHTML= parentNode.innerHTML+childHTML
+
+}
+function editUser(name, mail, phone, date, time, userId){
+    document.getElementById('name').value=name;
+    document.getElementById('mail').value=mail;
+    document.getElementById('phone').value=phone;
+    document.getElementById('date').value=date;
+    document.getElementById('time').value=time;
+ deleteUser(userId);
 
 }
 
@@ -76,3 +86,4 @@ function removeUserFromScreen(userId){
         parentNode.removeChild(childNodeToBeDeleted);
     }
 }
+

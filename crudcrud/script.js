@@ -49,9 +49,9 @@ function showNewUserOnScreen(user){
 
 
 var parentNode=document.getElementById('object');
-var childHTML=`<li id=${user._id}> ${user.name}- ${user.mail}
+var childHTML=`<li id=${user._id}> ${user.name}- ${user.mail}-${user.phone}-${user.date}-${user.time}
                    <button onclick=deleteUser('${user._id}')> Delete user </button>
-                    </id>`
+                    </li>`
 
 
                     parentNode.innerHTML= parentNode.innerHTML+childHTML

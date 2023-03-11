@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expence Tracker</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+
+
+</head>
+<body>
+     <div class="container">
+        <form id="my-form">
+            
+
+            
+                <label for="price" class="form-label">Choose Price:</label>
+                <input type="number" name="price" id="price" class="form-control">
+    
+            
+                <label for="dish" class="form-label">Choose Dish:</label>
+                <input type="text" name="dish" id="dish" class="form-control">
+        
+            
+            <label for="table" class="form-label" >Choose a Table:</label>
+
+               <select class="form-select" id="table">
+               <option value="table1">Table 1</option>
+               <option value="table2">Table 2</option>
+               <option value="table3">Table 3</option>
+             </select>
+
+       <button type="submit">Add to Bill</button>
+
+
+ </form>
+
+     </div>
+     <h1>Orders</h1>
+     <ul id="object">
+    <h4>Table 1</h4>
+     </ul>
+     <ul id="object1">
+        <h4>Table 2</h4>
+     </ul>
+     <ul id="object2">
+        <h4>Table 3</h4>
+     </ul>
+   
+    <script>
+
+     document.getElementById("my-form").addEventListener('submit', (event)=>{
+     event.preventDefault();
+       var price=document.getElementById('price').value
+       var dish=document.getElementById('dish').value
+       var table=document.getElementById('table').value
+
+       var obj={
+        price:price,
+        dish:dish,
+        table:table
+       }
+
+axios.post('https://crudcrud.com/api/b6603cc5d86b4c1ab610bf550a30648f/RestaurentApp', obj)
+.then((responce)=>{
+    showUserOnScreen(responce.data)
+
+})
+.catch((err)=>{
+    console.log(err)
+})
+
+        })
+        window.addEventListener('DOMContentLoaded', ()=>{
+            axios.get('https://crudcrud.com/api/b6603cc5d86b4c1ab610bf550a30648f/RestaurentApp')
+            .then((responce)=>{
+                console.log(responce)
+                for(let i=0;i<responce.data.length;i++){
+                    showUserOnScreen(responce.data[i])
+                }
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+        })
+        
+
+       async function showUserOnScreen(user){
+        try{
+        
+    if(user.table==='table1'){
+    var parentNode=document.getElementById('object')
+    var childHTML=`<li id=${user._id}> ${user.price}-${user.dish}-${user.table}
+            <button onclick = deleteUser1('${user._id}')>Delete Order</button>
+                
+            </li>`
+            parentNode.innerHTML=parentNode.innerHTML+childHTML;
+    }
+     else if(user.table==='table2'){
+    var parentNode=document.getElementById('object1')
+    var childHTML=`<li id=${user._id}> ${user.price}-${user.dish}-${user.table}
+            <button onclick = deleteUser2('${user._id}')>Delete Order</button>
+                
+            </li>`
+            parentNode.innerHTML=parentNode.innerHTML+childHTML;
+    }
+    else if(user.table==='table3'){
+    var parentNode=document.getElementById('object2')
+    var childHTML=`<li id=${user._id}> ${user.price}-${user.dish}-${user.table}
+            <button onclick = deleteUser3('${user._id}')>Delete Order</button>
+                
+            </li>`
+            parentNode.innerHTML=parentNode.innerHTML+childHTML;
+    }
+        
+    }
+    catch{(err)=>{
+      console.log(err)
+        }
+    }
+    }
+            
+
+function deleteUser1(userID){
+axios.delete(`https://crudcrud.com/api/b6603cc5d86b4c1ab610bf550a30648f/RestaurentApp/${userID}`)
+.then((responce)=>{
+    removeUserFromScreen(userID)
+
+})
+.catch((err)=>{
+    console.log(err)
+})
+
+ }
+ function deleteUser2(userID2){
+axios.delete(`https://crudcrud.com/api/b6603cc5d86b4c1ab610bf550a30648f/RestaurentApp/${userID2}`)
+.then((responce)=>{
+    removeUserFromScreen2(userID2)
+
+})
+.catch((err)=>{
+    console.log(err)
+})
+
+ }
+ function deleteUser3(userID3){
+axios.delete(`https://crudcrud.com/api/b6603cc5d86b4c1ab610bf550a30648f/RestaurentApp/${userID3}`)
+.then((responce)=>{
+    removeUserFromScreen3(userID3)
+
+})
+.catch((err)=>{
+    console.log(err)
+})
+
+ }
+        
+
+function removeUserFromScreen(userID){
+    var parent=document.getElementById('object')
+    var child=document.getElementById(userID)
+    if(child){
+    parent.removeChild(child)
+  }
+}
+function removeUserFromScreen2(userID2){
+    var parent1=document.getElementById('object1')
+    var child1=document.getElementById(userID2)
+    if(child1){
+    parent1.removeChild(child1)
+  }
+}
+function removeUserFromScreen3(userID3){
+    var parent2=document.getElementById('object2')
+    var child2=document.getElementById(userID3)
+    if(child2){
+    parent2.removeChild(child2)
+  }
+}
+
+</script>
+    
+</body>
+</html>

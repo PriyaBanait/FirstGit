@@ -13,7 +13,7 @@ document.getElementById('my-form').addEventListener('submit', (event)=>{
         date:date,
         time:time
     }
-axios.post("https://crudcrud.com/api/08fa52d6c9af4cc3b1d3ea37e260b4dd/appoinmentData", saveDataObject)
+axios.post("https://crudcrud.com/api/848e99e1469d4f16848a780158351dab/appoinmentData", saveDataObject)
     .then((response)=>{
         showNewUserOnScreen(response.data)
       
@@ -27,7 +27,7 @@ axios.post("https://crudcrud.com/api/08fa52d6c9af4cc3b1d3ea37e260b4dd/appoinment
     //onScreen(saveDataObject);
 })
 window.addEventListener("DOMContentLoaded", () =>{
-    axios.get("https://crudcrud.com/api/08fa52d6c9af4cc3b1d3ea37e260b4dd/appoinmentData")
+    axios.get("https://crudcrud.com/api/848e99e1469d4f16848a780158351dab/appoinmentData")
     .then((response)=>{
         console.log(response)
         for(var i=0;i<response.data.length;i++){
@@ -51,25 +51,16 @@ function showNewUserOnScreen(user){
 var parentNode=document.getElementById('object');
 var childHTML=`<li id=${user._id}> ${user.name}- ${user.mail}-${user.phone}-${user.date}-${user.time}
                    <button onclick=deleteUser('${user._id}')> Delete user </button>
-                   <button onclick="editUser('${user.name}','${user.mail}','${user.phone}','${user.date}','${user.time}','${user._id}')"> Edit user </button>
                     </li>`
 
 
                     parentNode.innerHTML= parentNode.innerHTML+childHTML
 
 }
-function editUser(name, mail, phone, date, time, userId){
-    document.getElementById('name').value=name;
-    document.getElementById('mail').value=mail;
-    document.getElementById('phone').value=phone;
-    document.getElementById('date').value=date;
-    document.getElementById('time').value=time;
- deleteUser(userId);
 
-}
 
 function deleteUser(userId){
-    axios.delete(`https://crudcrud.com/api/08fa52d6c9af4cc3b1d3ea37e260b4dd/appoinmentData/${userId}`)
+    axios.delete(`https://crudcrud.com/api/848e99e1469d4f16848a780158351dab/appoinmentData/${userId}`)
     .then((response)=>{
         removeUserFromScreen(userId)
     })

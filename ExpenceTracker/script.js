@@ -1,47 +1,48 @@
-document.getElementById('my-form').addEventListener('submit', (event)=>{
-    event.preventDefault();
-    var expences=document.getElementById('expences').value;
-    var description=document.getElementById('description').value;
-    var category=document.getElementById('category').value;
-    
-    var saveDataObject={
+
+document.getElementById("my-form").addEventListener('submit',(e)=>{
+    e.preventDefault();
+    var expences=document.getElementById("expences").value;
+    var description=document.getElementById("description").value;
+    var category=document.getElementById("category").value;
+
+    let object={
         expences:expences,
         description:description,
-        category:category,
+        category:category
     }
-    localStorage.setItem(saveDataObject.description,JSON.stringify(saveDataObject));
-    
-    onScreen(saveDataObject);
-  })
 
-    function onScreen(saveDataObject){
-        var parent=document.getElementById('object')
-        //parent.innerHTML=parent.innerHTML+`<li> ${saveDataObject.name} - ${saveDataObject.mail}-${saveDataObject.phone}-${saveDataObject.date}-${saveDataObject.time}</li>`
-        var child=document.createElement('li');
-        child.textContent=saveDataObject.expences+'-'+saveDataObject.description+'-'+saveDataObject.category;
+    localStorage.setItem(object.expences,JSON.stringify(object))
+    showOnScreen(object)
+})
+    function showOnScreen(object){
+         var parent=document.getElementById("object");
+var child=document.createElement("li");
+ 
+child.textContent=object.expences+"-"+object.description+"-"+object.category;
 
-        const deleteButton=document.createElement('input');
-        deleteButton.value='Delete';
-        deleteButton.type='button'
+var deleteButton=document.createElement('input');
+deleteButton.value='delete';
+deleteButton.type='button';
+var editButton=document.createElement('input');
+editButton.value='edit';
+editButton.type='button';
 
-        const editButton=document.createElement('input');
-        editButton.value='Edit';
-        editButton.type='button';
 
-        deleteButton.onclick=()=>{
-            localStorage.removeItem(saveDataObject.description);
-            parent.removeChild(child);  
-        }
+deleteButton.onclick=()=>{
+    localStorage.removeItem(object.description)
+    parent.removeChild(child)
+}
+editButton.onclick=()=>{
+    localStorage.removeItem(object.description);
+    parent.removeChild(child);
 
-      editButton.onclick=()=>{
-            localStorage.removeItem(saveDataObject.description);
-            parent.removeChild(child);
-            document.getElementById('expences').value=saveDataObject.expences;
-            document.getElementById('description').value=saveDataObject.description;
-            document.getElementById('category').value=saveDataObject.category;
-        }
-        
-        child.appendChild(deleteButton);
-        child.appendChild(editButton);
-        parent.appendChild(child);
+    document.getElementById('expences').value=object.expences;
+    document.getElementById('description').value=object.description;
+    document.getElementById('category').value=object.category;
+}
+
+
+child.appendChild(deleteButton);
+child.appendChild(editButton);
+parent.appendChild(child);
     }

@@ -13,28 +13,68 @@
     <title>Expence Tracker</title>
     <style>
         #btn{
-        margin:20px;
+         color: white;
+       border-radius: 10px;
+        margin-top: 20px;
+        width: 100%;
+        background-color: crimson;
     }
-    #category{
-        margin-top: 10px;
+    div{
+      margin-top: 10px;
+      color: white;
+    }
+   
+    input{
+      display: inline;
+    }
+    
+    #my-form{
+      
+      height: 280px;
+      border: 1px solid red;
+     border-radius: 20px;
+     background: rgba(246, 238, 238, 0.2);
+    }
+    h1{
+      text-align: center;
+      border: 1px solid black;
+      padding-bottom: 10px;
+      margin: 20px;
+      border-radius: 40px;
+      background-color:rgb(105, 100, 100);
+      color: white;
+    }
+    label{
+      margin-left: 20px;
+    }
+   
+    body{
+      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfcmQUQl8nOaG1gpuCGtzHYd0aOEgagicuCQ&usqp=CAU');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    #object{
+      color: white;
     }
     </style>
     
   </head>
   <body>
-    <div class="container">
+    <div class="container w-50">
         <form id="my-form">
 
-            <div class="col-6 input-area">
+           
+              <h1>Expence Tracker</h1>
+              <div >
                 <label for="expences" class="form-label">Choose Expences:</label>
-                <input type="text" name="expences" class="form-control" id="expences" required>
+                <input type="number" name="expences" id="expences" required>
               </div>
-              <div class="col-6 input-area">
+              <div >
                 <label for="description" class="form-label">Choose Description:</label>
-                <input type="text" name="description" class="form-control" id="description" required>
+                <input type="text" name="description"  id="description" required>
               </div>
-             <div class="col-6 input-area">
-                <label for="category" class="form-label">Choose a Category:</label>
+             <div >
+                <label for="category" >Choose a Category:</label>
             
                 <select class="form-select" id="category">
                     <option>Hollywood</option>
@@ -44,8 +84,8 @@
             
             </div>
             
-            <div class="col-xl-12 input-area">
-                <button type="submit" class="btn btn-primary">Add Expence</button>
+            <div>
+                <button type="submit" id="btn">Add Expence</button>
               </div>
               
             </form>
@@ -53,57 +93,11 @@
             <ul id="object">
           
             </ul>
- <script>
-    document.getElementById('my-form').addEventListener('submit', (event)=>{
-    event.preventDefault();
-    var expences=document.getElementById('expences').value;
-    var description=document.getElementById('description').value;
-    var category=document.getElementById('category').value;
-    
-    var saveDataObject={
-        expences:expences,
-        description:description,
-        category:category,    
-    }
-    localStorage.setItem(saveDataObject.description,JSON.stringify(saveDataObject));
-    
-    onScreen(saveDataObject);
-  })
-
-    function onScreen(saveDataObject){
-        var parent=document.getElementById('object')
-        //parent.innerHTML=parent.innerHTML+`<li> ${saveDataObject.name} - ${saveDataObject.mail}-${saveDataObject.phone}-${saveDataObject.date}-${saveDataObject.time}</li>`
-        var child=document.createElement('li');
-        child.textContent=saveDataObject.expences+'-'+saveDataObject.description+'-'+saveDataObject.category;
-
-        const deleteButton=document.createElement('input');
-        deleteButton.value='Delete';
-        deleteButton.type='button'
-
-        const editButton=document.createElement('input');
-        editButton.value='Edit';
-        editButton.type='button';
-
-        deleteButton.onclick=()=>{
-            localStorage.removeItem(saveDataObject.description);
-            parent.removeChild(child);
+            <script src=script.js>
+            </script>
             
-        }
-
-      editButton.onclick=()=>{
-            localStorage.removeItem(saveDataObject.description);
-            parent.removeChild(child);
-            document.getElementById('expences').value=saveDataObject.expences;
-            document.getElementById('description').value=saveDataObject.description;
-            document.getElementById('category').value=saveDataObject.category;
-        }
-        
-        child.appendChild(deleteButton);
-        child.appendChild(editButton);
-        parent.appendChild(child);
-    }
-</script>
-
-   
-  </body>
-</html>
+               
+              </body>
+            </html>
+ 
+    
